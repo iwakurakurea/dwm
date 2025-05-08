@@ -61,9 +61,14 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-p", dmenuprompt, "-fn", dmenufont, "-nb", col_unsel_bg, "-nf", col_unsel_fg, "-sb", col_sel_bg, "-sf", col_sel_fg, NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *volupcmd[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+10%", NULL } ;
-static const char *voldowncmd[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-10%", NULL } ;
-static const char *volmutecmd[] = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL } ;
+//static const char *volupcmd[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+10%", NULL } ;
+//static const char *voldowncmd[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-10%", NULL } ;
+//static const char *volmutecmd[] = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL } ;
+
+static const char *volupcmd[] = { "/home/clair/Scripts/f_keys.sh", "volume_up", NULL } ;
+static const char *voldowncmd[] = { "/home/clair/Scripts/f_keys.sh", "volume_down", NULL } ;
+static const char *volmutecmd[] = { "/home/clair/Scripts/f_keys.sh", "mute_volume", NULL } ;
+static const char *micmutecmd[] = { "/home/clair/Scripts/f_keys.sh", "mute_mic", NULL } ;
 
 static const char *screenshot_quickcmd[] = { "gnome-screenshot", "-a", NULL } ;
 static const char *screenshot_interactivecmd[] = { "gnome-screenshot", "-i", NULL } ;
@@ -103,6 +108,7 @@ static const Key keys[] = {
 	{ 0,			  XF86XK_AudioRaiseVolume, spawn, 			{.v = volupcmd} },
 	{ 0, 			  XF86XK_AudioLowerVolume, spawn, 			{.v = voldowncmd} },
 	{ 0,				 XF86XK_AudioMute, 		spawn, 			{.v = volmutecmd} },
+	{ 0,				 XF86XK_AudioMicMute, 		spawn, 			{.v = micmutecmd} },
 	{ 0, 							XK_Print, 	spawn, 			{.v = screenshot_quickcmd} },
 	{ MODKEY,						XK_Print,	spawn,			{.v = screenshot_interactivecmd} },
 	{ MODKEY,						XK_b,		spawn,			{.v = brightnessmenucmd} },
